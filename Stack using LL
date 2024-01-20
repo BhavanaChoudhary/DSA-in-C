@@ -1,0 +1,135 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+    int data;
+     struct Node *link;
+};
+struct Node *top=NULL;
+void push(int value){
+    struct Node *temp=malloc(sizeof(struct Node));
+    if(temp==NULL){
+        printf("\n Stack Overflow");
+        return;
+    }
+    
+    temp->data=value;
+    temp->link=NULL;
+    temp->link=top;
+    top=temp;
+}
+void pop(){
+    if(top==NULL){
+        printf("\n stack underflow");
+    }
+    struct Node *temp1;
+    temp1=top;
+    top=top->link;
+    printf("\n the deleted item is: %d\n",temp1->data);
+    free(temp1);
+    temp1=NULL;
+}
+void display(){
+    if(top==NULL){
+        printf("\n stack empty");
+    }
+    printf("\nelements in stack are:");
+    struct Node *ptr=top;
+    while(ptr!=NULL){
+        printf("%d\t",ptr->data);
+        ptr=ptr->link;
+    }
+}
+int main(){
+    int ch;
+   
+    do{
+           printf("\n1.push\n2.pop\n3.display\n4.exit\n");
+         printf("\nenter your choice\n");
+    scanf("%d",&ch);
+    
+       
+        switch(ch){
+            case 1: int value;
+                    printf("enter the value:");
+                    scanf("%d",&value);
+                   push(value);
+                   display();
+                   break;
+            case 2: if(top!=NULL){
+                     pop();
+                     display();
+                    }
+                    break;
+           
+            case 3:if(top!=NULL){
+                     display();
+                    }
+                    break;
+            case 4:printf("end of program");
+                   exit(0);
+            default: printf("invalid choice");
+     }
+        
+    }while(ch!=4);
+    return 0;
+}
+
+
+
+
+//////////////------------------------------/OUTPUT/---------------------------------/////////////
+
+
+1.push
+2.pop
+3.display
+4.exit
+
+enter your choice
+1
+enter the value:5
+elements in stack are:5	
+1.push
+2.pop
+3.display
+4.exit
+
+enter your choice
+1
+enter the value:10
+elements in stack are:10	5	
+1.push
+2.pop
+3.display
+4.exit
+
+enter your choice
+1
+enter the value:15
+elements in stack are:15	10	5	
+1.push
+2.pop
+3.display
+4.exit
+
+enter your choice
+2
+the deleted item is: 15
+
+elements in stack are:10	5	
+1.push
+2.pop
+3.display
+4.exit
+
+enter your choice
+3
+elements in stack are:10	5	
+1.push
+2.pop
+3.display
+4.exit
+
+enter your choice
+4
+end of program
