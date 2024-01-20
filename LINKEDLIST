@@ -1,0 +1,205 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node{
+    int data;
+    struct Node *link;
+};
+
+
+
+
+
+// create a node at the beginning
+struct Node *add_beg (struct Node *head,int value){
+    //create a new node
+    struct Node *temp=(struct Node *)malloc(sizeof(struct Node));
+    //temp=head;
+    temp->data=value;
+    temp->link=NULL;
+    temp->link=head;
+    head=temp;
+    return temp;
+
+}
+
+// Delete a node from the beginning
+struct Node*del_beg(struct Node * head){
+    if (head == NULL) {
+        printf("List is empty. Cannot delete.\n");
+        return;
+    }else{
+    struct Node * temp;
+    temp=head;
+    head=head->link;
+    temp->link=NULL;
+    
+    }
+    
+
+     return head;
+}
+
+
+//add a node at the end of the linked list
+
+struct Node* add_end(struct Node *head,int value){
+    struct Node *temp=head;
+    struct Node *newNode=malloc(sizeof(struct Node));
+    newNode->data=value;
+    newNode->link=NULL;
+    while(temp->link!=NULL){
+        temp=temp->link;
+    }
+    
+
+     temp->link=newNode;
+    return head;  
+   
+}
+
+//delete the node at the end of the linked list
+
+struct Node *del_end(struct Node *head){
+    struct Node * temp=head;
+    while(temp->link->link!=NULL){
+        temp=temp->link;
+    }
+   
+    temp->link=NULL;
+    free(temp->link);
+    
+   
+     return head;
+}
+
+//display the linked list elements
+
+void display(struct Node *head){
+    struct Node *ref;
+    ref=head;
+    while(ref!=NULL){
+        printf("%d\t",ref->data);
+        ref=ref->link;
+    }
+}
+
+int main(){
+    struct Node *head,*current;
+    head=(struct Node*)malloc(sizeof(struct Node));
+    head->data=10;
+    head->link=NULL;
+    current=(struct Node*)malloc(sizeof(struct Node));
+    current->data=20;
+    current->link=NULL;
+    head->link=current;
+    
+    
+    
+    int ch;
+   
+    do{
+           printf("\n 1.add at beginning \n 2. delete from beginning \n 3. add at end \n 4. delete from from end \n 5.display n 6. exit\n");
+         printf("\nenter your choice\n");
+    scanf("%d",&ch);
+    
+       
+        switch(ch){
+            case 1: int value;
+                    printf("enter the value:");
+                    scanf("%d",&value);
+                   head=add_beg(head,value);
+                   display(head);
+                   break;
+            case 2: if(head!=NULL){
+                     head=del_beg(head);
+                     display(head);
+                    }
+                    break;
+            case 3:
+                    printf("enter the value:");
+                    scanf("%d",&value);
+                    head=add_end(head,value);
+                    display(head);
+                    break;
+            case 4:if(head!=NULL){
+                     head=del_end(head);
+                     display(head);
+                    }
+                    break;
+            case 5:if(head!=NULL){
+                     display(head);
+                    }
+                    break;
+            case 6:printf("end of program");
+                   exit(0);
+     }
+        
+    }while(ch!=6);
+    return 0;
+}
+
+
+
+
+
+/////////////////////////////////////////////////
+OUTPUT:
+
+
+1.add at beginning 
+ 2. delete from beginning 
+ 3. add at end 
+ 4. delete from from end 
+ 5.display n 6. exit
+
+enter your choice
+5
+10	20	
+ 1.add at beginning 
+ 2. delete from beginning 
+ 3. add at end 
+ 4. delete from from end 
+ 5.display n 6. exit
+
+enter your choice
+1
+enter the value:5
+5	10	20	
+ 1.add at beginning 
+ 2. delete from beginning 
+ 3. add at end 
+ 4. delete from from end 
+ 5.display n 6. exit
+
+enter your choice
+3
+enter the value:40
+5	10	20	40	
+ 1.add at beginning 
+ 2. delete from beginning 
+ 3. add at end 
+ 4. delete from from end 
+ 5.display n 6. exit
+
+enter your choice
+2
+10	20	40	
+ 1.add at beginning 
+ 2. delete from beginning 
+ 3. add at end 
+ 4. delete from from end 
+ 5.display n 6. exit
+
+enter your choice
+4
+10	20	
+ 1.add at beginning 
+ 2. delete from beginning 
+ 3. add at end 
+ 4. delete from from end 
+ 5.display n 6. exit
+
+enter your choice
+6
+end of program
